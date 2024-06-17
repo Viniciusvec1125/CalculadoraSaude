@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultados da Calculadora de Saúde</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Resultados da Calculadora de Saúde</h1>
+        <div id="results" class="results"></div>
+        <button onclick="window.history.back()">Voltar</button>
+    </div>
+    <script>
+        // Função para exibir os resultados na página results.html
+        window.onload = function() {
+            const params = new URLSearchParams(window.location.search);
+            const bmi = params.get('bmi');
+            const weightStatus = params.get('weightStatus');
+            const waterIntake = params.get('waterIntake');
+            const bmr = params.get('bmr');
+            const weightToObesity = params.get('weightToObesity');
+
+            console.log('Params:', params.toString());  // Verifique os parâmetros
+            console.log('BMI:', bmi);
+            console.log('Weight Status:', weightStatus);
+            console.log('Water Intake:', waterIntake);
+            console.log('BMR:', bmr);
+            console.log('Weight to Obesity:', weightToObesity);
+
+            document.getElementById('results').innerHTML = `
+                <p>IMC: ${bmi}</p>
+                <p>Status de Peso: ${weightStatus}</p>
+                <p>Água Necessária: ${waterIntake} ml</p>
+                <p>Metabolismo Basal: ${bmr} calorias/dia</p>
+                ${weightToObesity !== 'null' ? `<p>Kg para Obesidade: ${weightToObesity} kg</p>` : ''}
+            `;
+        }
+    </script>
+</body>
+</html>
